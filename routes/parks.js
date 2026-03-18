@@ -2,7 +2,7 @@ import {Router} from "express";
 import { commentsFunctions } from "../data/comments.js";
 import {parksFunctions} from "../data/parks.js";
 import { ratingsFunctions } from "../data/ratings.js";
-import { requireLogin } from "../middleware.js";
+import { requireLogin } from "../custom-middleware.js";
 import { checkIdInRatings, checkString } from "../validation.js";
 import { usersFunctions } from "../data/users.js";
 import xss from "xss";

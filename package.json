@@ -10,10 +10,10 @@
     "Shasha Alvares"
   ],
   "type": "module",
-  "main": "app.js",
+  "main": "api/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
+    "start": "node api/index.js",
     "seed": "node tasks/index.js"
   },
   "dependencies": {

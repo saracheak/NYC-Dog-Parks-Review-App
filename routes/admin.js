@@ -1,6 +1,6 @@
 // routes/admin.routes.js
 import { Router } from "express";
-import { requireAdmin } from "../middleware.js";
+import { requireAdmin } from "../custom-middleware.js";
 import { parksFunctions } from "../data/parks.js";
 import { biscuitsFunctions } from "../data/biscuits.js";
 import { checkString } from "../validation.js";

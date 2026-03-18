@@ -8,14 +8,18 @@ import {fileURLToPath} from 'url';
 import {dirname} from 'path';
 import { create } from 'express-handlebars';
 import cookieParser from 'cookie-parser';
-import { attachUserToLocals } from '../middleware.js';
+import { attachUserToLocals } from '../custom-middleware.js';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+const ROOT = process.cwd();
+const VIEWS_PATH = path.join(ROOT, 'views');
+const PUBLIC_PATH = path.join(ROOT, 'public');
+
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(PUBLIC_PATH));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(
@@ -58,7 +62,7 @@ const hbs = create({
 }});
 app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars');
-app.set('views', path.join(__dirname, '../views'));
+app.set('views', VIEWS_PATH);
 
 //Runs for every request and automatically passes isLoggedIn, isAdmin, currentUser, and userId to handlebars
 //For every request, automatically sets res.locals.userId = req.session.userId that was previously listed in app.js
@@ -70,4 +74,4 @@ app.listen(3000, () => {
   console.log('Your routes will be running on http://localhost:3000');
 });
 
-module.exports = app;
+export default app;
