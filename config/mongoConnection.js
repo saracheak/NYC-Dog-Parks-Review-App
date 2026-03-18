@@ -1,5 +1,9 @@
 import {MongoClient} from 'mongodb';
-import {mongoConfig} from './settings.js';
+
+export const mongoConfig = {
+  serverUrl: process.env.MONGODB_URI || 'mongodb://localhost:27017/',
+  database: 'pupmap_db'
+};
 
 let _connection = undefined;
 let _db = undefined;
