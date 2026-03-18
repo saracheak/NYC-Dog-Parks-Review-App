@@ -1,14 +1,14 @@
 import express from 'express';
 import exphbs from 'express-handlebars';
 import session from 'express-session';
-import configRoutes from './routes/index.js';
+import configRoutes from '../routes/index.js';
 import path from 'path';
 import 'dotenv/config';
 import {fileURLToPath} from 'url';
 import {dirname} from 'path';
 import { create } from 'express-handlebars';
 import cookieParser from 'cookie-parser';
-import { attachUserToLocals } from './middleware.js';
+import { attachUserToLocals } from '../middleware.js';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -58,7 +58,7 @@ const hbs = create({
 }});
 app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../views'));
 
 //Runs for every request and automatically passes isLoggedIn, isAdmin, currentUser, and userId to handlebars
 //For every request, automatically sets res.locals.userId = req.session.userId that was previously listed in app.js
@@ -69,3 +69,5 @@ app.listen(3000, () => {
   console.log("We've now got a server!");
   console.log('Your routes will be running on http://localhost:3000');
 });
+
+module.exports = app;
